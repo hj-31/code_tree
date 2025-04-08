@@ -4,7 +4,7 @@ arr = list(map(int, input().split()))
 def max_value(n, arr):
     if n == 0:
         return arr[n]
-        
-    return max(arr[n], max_value(n-1, arr))
+    val = max_value(n-1, arr)
+    return arr[n] if arr[n] >= val else val
 
 print(max_value(n-1, arr))
