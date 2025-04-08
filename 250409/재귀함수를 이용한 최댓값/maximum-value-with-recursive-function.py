@@ -1,10 +1,10 @@
 n = int(input())
 arr = list(map(int, input().split()))
 
-def max_value(i, n, arr):
-    if i == n-1:
-        return arr[-1]
+def max_value(n, arr):
+    if n == 0:
+        return arr[n]
         
-    return max(arr[i], max_value(i+1, n, arr))
+    return max(arr[n], max_value(n-1, arr))
 
-print(max_value(0, n, arr))
+print(max_value(n-1, arr))
