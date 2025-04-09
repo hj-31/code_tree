@@ -10,7 +10,7 @@ def in_range(x, y):
     return 1 <= x <= n and 1 <= y <= n
 
 direction = move_dir[d]
-while t > 0:
+for _ in range(t):
     dx, dy = dxy[direction]
     nx, ny = r + dx, c + dy
     
@@ -18,7 +18,5 @@ while t > 0:
         direction = 3 - direction
     else:
         r, c = nx, ny
-
-    t -= 1
 
 print(r, c)
