@@ -8,17 +8,35 @@ for i in range(n):
 move_dir = [(1, 0), (0, -1), (-1, 0), (0, 1)]
 
 k_dict = {}
-x, y = 0, -1
+x, y = -1, -1
+idx, dir_idx = 3, 0
 for k in range(4*n):
-    pos = (k//3 -1)%4
-    x, y = x + move_dir[pos][0], y + move_dir[pos][1]
-    k_dict[k+1] = (x, y, k//3)
-    # k: (x, y, direction)
+    dx, dy = move_dir[idx]
+    x, y = x + dx, y + dy
 
-k = int(input())
+    a, b = divmod(k, 3)
+    if b == n-1:
+        k_dict[k+1] = (x, y, dir_idx)
+        x, y = x + dx, y + dy
+        idx = (idx + 1) % 4
+        dir_idx += 1
+    else:
+        k_dict[k+1] = (x, y, dir_idx)
+    # k: (x, y, direction)
 
 def in_range(x, y):
     return 0 <= x < n and 0 <= y < n
+
+
+# 방향 전환하기
+def change_direction(mirror, dir_idx):
+    # / : down <-> left, up <-> right  &  \ : down <-> right, up <-> left
+    to_slash_idx =  [1, 0, 3, 2]
+    to_backslash_idx = [3, 2, 1, 0]
+
+    return to_slash_idx[dir_idx] if mirror == "/" else to_backslash_idx[dir_idx]
+
+k = int(input())
 
 # 시작 위치
 x, y, idx = k_dict[k]
@@ -26,14 +44,7 @@ x, y, idx = k_dict[k]
 x, y = x + move_dir[idx][0], y + move_dir[idx][1]
 cnt = 0
 
-# 방향 전환하기
-def change_direction(mirror, dir_idx):
-    # / : down <-> left, up <-> right  &  \ : down <-> right, up <-> left
-    to_slash_idx = [1, 0, 3, 2]
-    to_backslash_idx = [3, 2, 1, 0]
-
-    return to_slash_idx[dir_idx] if mirror == "/" else to_backslash_idx[dir_idx]
-
+dic = {0: "down", 1: "left", 2: "up", 3: "right"}
 
 # 좌표가 범위 밖이면 끝
 while in_range(x, y):
@@ -43,7 +54,5 @@ while in_range(x, y):
     idx = change_direction(mirrors[x][y], idx)
     # 다음 칸 좌표 구하기
     x, y = x + move_dir[idx][0], y + move_dir[idx][1]
-    # 진입 방향 바꾸기 : d <-> u, l <-> r
-    idx = (idx + 2) % 4
 
 print(cnt)
