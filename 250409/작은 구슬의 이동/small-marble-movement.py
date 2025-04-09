@@ -3,7 +3,7 @@ r, c, d = input().split()
 r, c = int(r), int(c)
 
 # Up, Left, Right, Down
-dxy = list(zip([-1, 0, 0, +1], [0, -1, 1, 0]))
+dxy = list(zip([-1, 0, 0, 1], [0, -1, 1, 0]))
 move_dir = {"U": 0, "L": 1, "R": 2, "D": 3}
 
 def in_range(x, y):
