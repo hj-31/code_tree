@@ -8,30 +8,30 @@ for i in range(1, 10):
             if i == j or j == k or k == i:
                 continue
 
-                is_success = True
-                for num, cnt1, cnt2 in arr:
-                    x, y, z = num // 100, num // 10 % 10, num % 10
-                    strike, ball = 0, 0
-                    
-                    if i == x:
-                        strike += 1
-                    if j == y:
-                        strike += 1
-                    if k == z:
-                        strike += 1
-                    if i in (y, z):
-                        ball += 1
-                    if j in (x, z):
-                        ball += 1
-                    if k in (x, y):
-                        ball += 1
+            is_success = True
+            for num, cnt1, cnt2 in arr:
+                x, y, z = num // 100, (num // 10) % 10, num % 10
+                strike, ball = 0, 0
+                
+                if i == x:
+                    strike += 1
+                if j == y:
+                    strike += 1
+                if k == z:
+                    strike += 1
+                if i in (y, z):
+                    ball += 1
+                if j in (x, z):
+                    ball += 1
+                if k in (x, y):
+                    ball += 1
 
-                    if strike != cnt1 or ball != cnt2:
-                        is_success = False
-                        break
-            
-                if is_success:
-                    cnt += 1
+                if strike != cnt1 or ball != cnt2:
+                    is_success = False
+                    break
+        
+            if is_success:
+                cnt += 1
 
 print(cnt)
 
