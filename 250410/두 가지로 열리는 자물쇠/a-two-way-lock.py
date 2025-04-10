@@ -23,11 +23,20 @@ def count_possible(a, b, c):
 
 
 def duplicate(a, b, c, x, y, z):
-    first = set(possible_set[a]) & set(possible_set[x])
-    second = set(possible_set[b]) & set(possible_set[y])
-    third = set(possible_set[c]) & set(possible_set[z])
-    return len(first) * len(second) * len(third)
+    a_list = set(filter(lambda i: 1 <= i <= n, possible_set[a]))
+    b_list = set(filter(lambda i: 1 <= i <= n, possible_set[b]))
+    c_list = set(filter(lambda i: 1 <= i <= n, possible_set[c]))
+    
+    x_list = set(filter(lambda i: 1 <= i <= n, possible_set[x]))
+    y_list = set(filter(lambda i: 1 <= i <= n, possible_set[y]))
+    z_list = set(filter(lambda i: 1 <= i <= n, possible_set[z]))
+
+    i, j, k = a_list & x_list, b_list & y_list, c_list & z_list
+    return len(i) * len(j) * len(k)
 
 
-total_cnt = count_possible(a1, b1, c1) + count_possible(a2, b2, c2) - duplicate(a1, b1, c1, a2, b2, c2)
-print(total_cnt)
+cnt1 = count_possible(a1, b1, c1)
+cnt2 = count_possible(a2, b2, c2)
+duplicate_cnt = duplicate(a1, b1, c1, a2, b2, c2)
+
+print(cnt1 + cnt2 - duplicate_cnt)
