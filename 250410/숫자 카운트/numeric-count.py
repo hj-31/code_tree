@@ -1,5 +1,42 @@
 n = int(input())
+arr = [tuple(map(int, input().split())) for _ in range(n)]
 
+cnt = 0
+for i in range(1, 10):
+    for j in range(1, 10):
+        for k in range(1, 10):
+            if i == j or j == k or k == i:
+                continue
+
+                is_success = True
+                for num, cnt1, cnt2 in arr:
+                    x, y, z = num // 100, num // 10 % 10, num % 10
+                    strike, ball = 0, 0
+                    
+                    if i == x:
+                        strike += 1
+                    if j == y:
+                        strike += 1
+                    if k == z:
+                        strike += 1
+                    if i in (y, z):
+                        ball += 1
+                    if j in (x, z):
+                        ball += 1
+                    if k in (x, y):
+                        ball += 1
+
+                    if strike != cnt1 or ball != cnt2:
+                        is_success = False
+                        break
+            
+                if is_success:
+                    cnt += 1
+
+print(cnt)
+
+
+""" 방법 2
 arr_set = set()
 for i in range(1, 10):
     for j in range(1, 10):
@@ -19,6 +56,7 @@ def count(abc, cnt1, cnt2):
     return new_set
 
 
+
 for _ in range(n):
     num, cnt1, cnt2 = input().split()
     abc= tuple(map(int, list(num)))
@@ -26,3 +64,4 @@ for _ in range(n):
     arr_set = count(abc, cnt1, cnt2)
     
 print(len(arr_set))
+"""
