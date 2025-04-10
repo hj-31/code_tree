@@ -3,8 +3,8 @@ a1, b1, c1 = map(int, input().split())
 a2, b2, c2 = map(int, input().split())
 
 possible_set = {}
-for i in range(1, 10):
-    lst = [(i+j)%9 if (i+j)%9 != 0 else 9 for j in range(-2, 3)]
+for i in range(1, n+1):
+    lst = [(i+j)%n if (i+j)%n != 0 else n for j in range(-2, 3)]
     possible_set[i] = lst
 
 def is_possible(x, y):
