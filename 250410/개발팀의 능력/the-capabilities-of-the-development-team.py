@@ -21,4 +21,7 @@ for i in range(n):
             diff = diff_value(i, j, k)
             min_diff = min(min_diff, diff)
 
-print(min_diff)
+if min_diff == 999999999:
+    print(-1)
+else:
+    print(min_diff)
