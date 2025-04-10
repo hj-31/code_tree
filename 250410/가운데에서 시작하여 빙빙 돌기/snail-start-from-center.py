@@ -13,7 +13,7 @@ def in_range(x, y):
 
 # 마지막 직선 이동은 전 방향 진행 수와 같아서 +1 하면 경계 밖 됨
 def end():
-    return in_range(cur_x, cur_y)
+    return not in_range(cur_x, cur_y)
 
 
 def move():
