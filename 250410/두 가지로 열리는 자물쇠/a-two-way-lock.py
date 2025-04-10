@@ -21,5 +21,10 @@ def count_possible(a, b, c):
 
     return cnt
 
+
+def duplicate(a, b, c, x, y, z):
+    first = set(possible_set[a]) & set(possible_set[x])
+    second = set(possible_set[b]) & set(possible_set[y])
+
 total_cnt = count_possible(a1, b1, c1) + count_possible(a2, b2, c2) - 1
 print(total_cnt)
