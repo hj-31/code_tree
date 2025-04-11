@@ -18,6 +18,8 @@ for i in range(n):
     if not is_crossing:
         not_crossing += 1
 
+print(not_crossing)
+
 """ 방법 2
 arr.sort()
 
@@ -34,6 +36,6 @@ for x1, x2 in arr:
             if before_x2 < x2:
                 not_crossing.append(before_x2)
                 break
-"""
 
 print(len(not_crossing))
+"""
